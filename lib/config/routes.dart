@@ -1,5 +1,6 @@
+// routes.dart
+import "package:go_router/go_router.dart";
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:anime_verse/screens/detail_Screen.dart';
 import 'package:anime_verse/screens/favorite_screen.dart';
@@ -8,46 +9,74 @@ import 'package:anime_verse/screens/profile_screen.dart';
 import 'package:anime_verse/screens/signin_screen.dart';
 import 'package:anime_verse/screens/signup_screen.dart';
 
+import 'package:anime_verse/widgets/bottom_navigation_shell.dart';
+
+class AppRoutes {
+  static const String signIn = '/sign-in';
+  static const String signUp = '/sign-up';
+  static const String home = '/home';
+  static const String favorites = '/favorites';
+  static const String profile = '/profile';
+  static const String details = '/details';
+}
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>();
-
+final GlobalKey<NavigatorState> _shellNavigatorKey =
+    GlobalKey<NavigatorState>();
 
 GoRouter createRouter() {
+  // routes.dart
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/home',
+    initialLocation: AppRoutes.signIn,
     routes: [
+      // 1. Auth Routes
       GoRoute(
-        path: '/sign-in',
-        builder: (context, state) => const SignInScreen()
+        path: AppRoutes.signIn,
+        name: 'sign-in',
+        builder: (context, state) => const SignInScreen(),
       ),
       GoRoute(
-        path: '/sign-up',
-        builder: (context, state) => const SignUpScreen()
+        path: AppRoutes.signUp,
+        name: 'sign-up',
+        builder: (context, state) => const SignUpScreen(),
       ),
+
+      // 2. Detail Route
       GoRoute(
-        path: '/details',
-        builder: (context, state) => const DetailScreen()
+        path: '${AppRoutes.details}/:id',
+        name: 'detail',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) {
+          final animeId = state.pathParameters['id'] ?? '';
+          return DetailScreen(animeId: animeId);
+        },
       ),
-      
+
+      // 3. ShellRoute (Untuk Halaman yang menggunakan Bottom Navigation Bar)
       ShellRoute(
-        routes:[
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return BottomNavigationShell(child: child);
+        },
+        routes: [
           GoRoute(
-            path: '/home',
-            builder: (context, state) => const HomeScreen()
+            path: AppRoutes.home,
+            name: 'home',
+            builder: (context, state) => const HomeScreen(),
           ),
           GoRoute(
-            path: '/favorite',
-            builder: (context, state) => const FavoriteScreen()
+            path: AppRoutes.favorites,
+            name: 'favorite',
+            builder: (context, state) => const FavoriteScreen(),
           ),
           GoRoute(
-            path: '/profile',
-            builder: (context, state) => const ProfileScreen()
+            path: AppRoutes.profile,
+            name: 'profile',
+            builder: (context, state) => const ProfileScreen(),
           ),
-        ]
-      )
-      
-    ]
-  )
+        ],
+      ),
+    ],
+  );
 }
