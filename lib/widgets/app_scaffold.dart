@@ -1,13 +1,13 @@
-import 'package:anime_verse/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
+import 'gradient_background.dart';
 
 class AppScaffold extends StatelessWidget {
-  final PreferredSizeWidget? appbar;
+  final PreferredSizeWidget? appBar;
   final Widget body;
 
   const AppScaffold({
     super.key,
-    this.appbar,
+    this.appBar,
     required this.body,
   });
 
@@ -15,10 +15,15 @@ class AppScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     // AppScaffold mengembalikan GradientBackground sebagai dasar
     return GradientBackground(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: body,
-    ),
+      // Di dalamnya ada Scaffold standar
+      child: Scaffold(
+        // Pastikan Scaffold transparan agar gradien terlihat
+        backgroundColor: Colors.transparent,
+        // Body dan AppBar dari Scaffold akan diisi oleh widget apa pun
+        // yang kita kirim saat memanggil AppScaffold
+        appBar: appBar,
+        body: body,
+      ),
     );
   }
 }
