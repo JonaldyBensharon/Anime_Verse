@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../config/routes.dart';
 
 class AnimeCard extends StatelessWidget {
   final String id;
@@ -17,7 +20,11 @@ class AnimeCard extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return LayoutBuilder(
+    return GestureDetector(
+      onTap: (){
+        context.push('${AppRoutes.details}/$id');
+      },
+      child: LayoutBuilder(
       builder: (context, constraints) {
         final cardWidth = constraints.maxWidth;
 
@@ -26,7 +33,7 @@ class AnimeCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Image section - takes most of the space
+
               // Image section - takes most of the space
               Expanded(
                 flex: 8,
@@ -42,7 +49,6 @@ class AnimeCard extends StatelessWidget {
               ),
 
 
-              // Title section - compact but readable
               // Title section - compact but readable
               Expanded(
                 flex: 2,
@@ -68,11 +74,12 @@ class AnimeCard extends StatelessWidget {
                   ),
                 ),
               ),
-
-            ],
-          ),
-        );
-      },
+              
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

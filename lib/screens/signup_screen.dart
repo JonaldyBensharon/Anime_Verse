@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-
+import '../config/routes.dart';
 import '../widgets/app_scaffold.dart';
-
-import 'package:anime_verse/config/routes.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -30,6 +28,7 @@ class SignUpScreen extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.1),
 
                     // TODO: Add logo here
+
                     SizedBox(height: screenHeight * 0.04),
 
                     // SignUp Title
@@ -131,6 +130,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
 
                     SizedBox(height: screenHeight * 0.03),
+
 
                     // Sign Up Button
                     SizedBox(

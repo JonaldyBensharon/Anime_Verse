@@ -1,15 +1,12 @@
-// routes.dart
-import "package:go_router/go_router.dart";
-import 'package:flutter/material.dart';
-
-import 'package:anime_verse/screens/detail_screen.dart';
 import 'package:anime_verse/screens/favorite_screen.dart';
 import 'package:anime_verse/screens/home_screen.dart';
 import 'package:anime_verse/screens/profile_screen.dart';
 import 'package:anime_verse/screens/signin_screen.dart';
 import 'package:anime_verse/screens/signup_screen.dart';
-
 import 'package:anime_verse/widgets/bottom_navigation_shell.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../screens/detail_screen.dart';
 
 class AppRoutes {
   static const String signIn = '/sign-in';
@@ -21,10 +18,8 @@ class AppRoutes {
 }
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> _shellNavigatorKey =
-    GlobalKey<NavigatorState>();
 
-GoRouter createRouter() {
+GoRouter createRouter(){
   // routes.dart
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
@@ -54,26 +49,37 @@ GoRouter createRouter() {
       ),
 
       // 3. ShellRoute (Untuk Halaman yang menggunakan Bottom Navigation Bar)
-      ShellRoute(
-        navigatorKey: _shellNavigatorKey,
+      StatefulShellRoute.indexedStack(
         builder: (context, state, child) {
-          return BottomNavigationShell(child: child);
+          return BottomNavigationShell(navigationShell: child);
         },
-        routes: [
-          GoRoute(
-            path: AppRoutes.home,
-            name: 'home',
-            builder: (context, state) => const HomeScreen(),
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                name: 'home',
+                builder: (context, state) => const HomeScreen(),
+              ),
+            ],
           ),
-          GoRoute(
-            path: AppRoutes.favorites,
-            name: 'favorite',
-            builder: (context, state) => const FavoriteScreen(),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.favorites,
+                name: 'favorite',
+                builder: (context, state) => const FavoriteScreen(),
+              ),
+            ],
           ),
-          GoRoute(
-            path: AppRoutes.profile,
-            name: 'profile',
-            builder: (context, state) => const ProfileScreen(),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.profile,
+                name: 'profile',
+                builder: (context, state) => const ProfileScreen(),
+              ),
+            ],
           ),
         ],
       ),
