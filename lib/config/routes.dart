@@ -2,7 +2,7 @@
 import "package:go_router/go_router.dart";
 import 'package:flutter/material.dart';
 
-import 'package:anime_verse/screens/detail_Screen.dart';
+import 'package:anime_verse/screens/detail_screen.dart';
 import 'package:anime_verse/screens/favorite_screen.dart';
 import 'package:anime_verse/screens/home_screen.dart';
 import 'package:anime_verse/screens/profile_screen.dart';
