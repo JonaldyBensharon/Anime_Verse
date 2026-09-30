@@ -1,17 +1,27 @@
-# anime_verse
+# Anime Verse
 
-A new Flutter project.
+Anime Verse adalah aplikasi pengelolaan data sederhana yang dijadikan media pembelajaran dari konsep Flutter.
+Aplikasi ini direncanakan untuk menggunakan data anime dari pihak luar, yaitu JikanAPI.
 
-## Getting Started
+## Fitur Dasar
 
-This project is a starting point for a Flutter application.
+Layanan dasar yang direncanakan untuk hadir dalam aplikasi ini, yaitu
+- Manajemen data anime
+  
+  Aplikasi ini memungkinkan pengguna dalam mengelola data dari API eksternal untuk menampilkan daftar dan detail anime.
+  
+- Autentikasi pengguna
 
-A few resources to get you started if this is your first Flutter project:
+  Aplikasi ini menyediakan sistem registrasi dan login untuk memastikan keamanan akun pengguna dan mencegah pihak yang tidak memiliki akun untuk mengakses layanan yang tersedia di dalam aplikasi. 
+  
+- Filter pencarian
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+  Aplikasi ini menyediakan layanan filter serta pencarian untuk memudahkan pengguna dalam menemukan anime yang ingin dilihat.
+  
+- Personalisasi pengguna
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  Aplikasi memungkinkan pengguna untuk menjadikan suatu anime sebagai favorit dengan melibatkan penyimpanan lokal dan online.
+  
+- Manajemen akun
+  
+  Tersedia juga layanan pengelolaan akun, termasuk perubahan email dan penggantian password.
